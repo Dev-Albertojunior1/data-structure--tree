@@ -109,6 +109,7 @@ public class BinaryTree {
                             root.left,
                             root.data); // Deleta o nó com o maior valor na subárvore esquerda
         }
+
         return root;
     }
 
