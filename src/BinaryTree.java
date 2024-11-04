@@ -1,5 +1,3 @@
-
-
 public class BinaryTree {
     private Node root;
 
@@ -84,7 +82,7 @@ public class BinaryTree {
         root = deleteRecUsingMaxInLeft(root, data);
     }
 
-    //serach
+    // serach
     private Node deleteRecUsingMaxInLeft(Node root, int data) {
         if (root == null) {
             return root; // Caso base: árvore vazia
@@ -96,17 +94,22 @@ public class BinaryTree {
         } else {
             // Encontramos o nó a ser deletado
             if (root.left == null) {
-                return root.right; // Caso com zero ou um filho (lado direito), ele é simplesmente removido e substituído por esse filho (ou por null se não tiver filhos).
+                return root.right; // Caso com zero ou um filho (lado direito), ele é simplesmente
+                                   // removido e substituído por esse filho (ou por null se não
+                                   // tiver filhos).
             } else if (root.right == null) {
                 return root.left; // Caso com zero ou um filho (lado esquerdo)
             }
 
             // Caso com dois filhos: substitui pelo maior valor na subárvore esquerda
-            root.data = maxValue(root.left); // Atribui o valor máximo da subárvore esquerda ao nó atual
-            root.left = deleteRecUsingMaxInLeft(root.left, root.data); // Deleta o nó com o maior valor na subárvore esquerda
+            root.data =
+                    maxValue(root.left); // Atribui o valor máximo da subárvore esquerda ao nó atual
+            root.left =
+                    deleteRecUsingMaxInLeft(
+                            root.left,
+                            root.data); // Deleta o nó com o maior valor na subárvore esquerda
         }
         return root;
-
     }
 
     private int maxValue(Node root) {
@@ -118,7 +121,6 @@ public class BinaryTree {
         return maxValue;
     }
 }
-
 
 //                 50
 //                /  \
@@ -133,7 +135,7 @@ public class BinaryTree {
 //                       /      / \
 //                      20     60  80
 
-//Considere a seguinte árvore e o desejo de excluir o nó 50 (que possui dois filhos):
-//O maior valor na subárvore esquerda de 50 é 40.
-//Substituímos 50 por 40 e, em seguida, excluímos 40 da subárvore esquerda.
+// Considere a seguinte árvore e o desejo de excluir o nó 50 (que possui dois filhos):
+// O maior valor na subárvore esquerda de 50 é 40.
+// Substituímos 50 por 40 e, em seguida, excluímos 40 da subárvore esquerda.
 
