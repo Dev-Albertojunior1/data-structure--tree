@@ -95,8 +95,8 @@ public class BinaryTree {
             // Encontramos o nó a ser deletado
             if (root.left == null) {
                 return root.right; // Caso com zero ou um filho (lado direito), ele é simplesmente
-                                   // removido e substituído por esse filho (ou por null se não
-                                   // tiver filhos).
+                // removido e substituído por esse filho (ou por null se não
+                // tiver filhos).
             } else if (root.right == null) {
                 return root.left; // Caso com zero ou um filho (lado esquerdo)
             }
@@ -138,4 +138,3 @@ public class BinaryTree {
 // Considere a seguinte árvore e o desejo de excluir o nó 50 (que possui dois filhos):
 // O maior valor na subárvore esquerda de 50 é 40.
 // Substituímos 50 por 40 e, em seguida, excluímos 40 da subárvore esquerda.
-
