@@ -79,7 +79,7 @@ public class BinaryTree {
 
     // Delete a value from the binary tree using the maximum value in the left subtree
     public void deleteUsingMaxInLeftSubtree(int data) {
-        root = deleteRecUsingMaxInLeft(root, data);
+        roott = deleteRecUsingMaxInLeft(root, data);
     }
 
     // serach
