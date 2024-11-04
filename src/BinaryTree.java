@@ -1,6 +1,7 @@
 
+
 public class BinaryTree {
-    Node root;
+    private Node root;
 
     public BinaryTree() {
         root = null;
@@ -78,75 +79,61 @@ public class BinaryTree {
         return data < root.data ? searchRec(root.left, data) : searchRec(root.right, data);
     }
 
-    // Delete a value from the binary tree
-    public void delete(int data) {
-        root = deleteRec(root, data);
+    // Delete a value from the binary tree using the maximum value in the left subtree
+    public void deleteUsingMaxInLeftSubtree(int data) {
+        root = deleteRecUsingMaxInLeft(root, data);
     }
 
-    private Node deleteRec(Node root, int data) {
+    //serach
+    private Node deleteRecUsingMaxInLeft(Node root, int data) {
         if (root == null) {
-            return root;
+            return root; // Caso base: árvore vazia
         }
         if (data < root.data) {
-            root.left = deleteRec(root.left, data);
+            root.left = deleteRecUsingMaxInLeft(root.left, data); // Procura na subárvore esquerda
         } else if (data > root.data) {
-            root.right = deleteRec(root.right, data);
+            root.right = deleteRecUsingMaxInLeft(root.right, data); // Procura na subárvore direita
         } else {
+            // Encontramos o nó a ser deletado
             if (root.left == null) {
-                return root.right;
+                return root.right; // Caso com zero ou um filho (lado direito), ele é simplesmente removido e substituído por esse filho (ou por null se não tiver filhos).
             } else if (root.right == null) {
-                return root.left;
+                return root.left; // Caso com zero ou um filho (lado esquerdo)
             }
-            root.data = minValue(root.right);
-            root.right = deleteRec(root.right, root.data);
+
+            // Caso com dois filhos: substitui pelo maior valor na subárvore esquerda
+            root.data = maxValue(root.left); // Atribui o valor máximo da subárvore esquerda ao nó atual
+            root.left = deleteRecUsingMaxInLeft(root.left, root.data); // Deleta o nó com o maior valor na subárvore esquerda
         }
         return root;
+
     }
 
-    private int minValue(Node root) {
-        int minValue = root.data;
-        while (root.left != null) {
-            minValue = root.left.data;
-            root = root.left;
+    private int maxValue(Node root) {
+        int maxValue = root.data;
+        while (root.right != null) {
+            maxValue = root.right.data;
+            root = root.right;
         }
-        return minValue;
-    }
-
-    public static void main(String[] args) {
-        BinaryTree tree = new BinaryTree();
-
-        // Insert elements
-        tree.insert(50);
-        tree.insert(30);
-        tree.insert(20);
-        tree.insert(40);
-        tree.insert(70);
-        tree.insert(60);
-        tree.insert(80);
-
-        // In-order traversal
-        System.out.print("In-order traversal: ");
-        tree.inOrder();
-        System.out.println();
-
-        // Pre-order traversal
-        System.out.print("Pre-order traversal: ");
-        tree.preOrder();
-        System.out.println();
-
-        // Post-order traversal
-        System.out.print("Post-order traversal: ");
-        tree.postOrder();
-        System.out.println();
-
-        // Search for elements
-        System.out.println("Search for 40: " + tree.search(40));
-        System.out.println("Search for 90: " + tree.search(90));
-
-        // Delete elements
-        tree.delete(30);
-        System.out.print("In-order traversal after deleting 30: ");
-        tree.inOrder();
-        System.out.println();
+        return maxValue;
     }
 }
+
+
+//                 50
+//                /  \
+//                30  70
+//                / \    / \
+//               20 40  60  80
+//
+//
+//                          40
+//                         /  \
+//                       30    70
+//                       /      / \
+//                      20     60  80
+
+//Considere a seguinte árvore e o desejo de excluir o nó 50 (que possui dois filhos):
+//O maior valor na subárvore esquerda de 50 é 40.
+//Substituímos 50 por 40 e, em seguida, excluímos 40 da subárvore esquerda.
+
