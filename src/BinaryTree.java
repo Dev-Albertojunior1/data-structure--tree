@@ -98,6 +98,7 @@ public class BinaryTree {
                 // removido e substituído por esse filho (ou por null se não
                 // tiver filhos).
             } else if (root.right == null) {
+
                 return root.left; // Caso com zero ou um filho (lado esquerdo)
             }
 
