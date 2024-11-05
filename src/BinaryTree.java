@@ -7,7 +7,7 @@ public class BinaryTree {
 
     // Insert a new value into the binary tree
     public void insert(int data) {
-        root = insertRec(roo, data);
+        root = insertRec(root, data);
     }
 
     private Node insertRec(Node root, int data) {
